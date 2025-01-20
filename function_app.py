@@ -7,21 +7,26 @@ app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
 def sample(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
+    # Extract the name parameter from the request
     name = req.params.get('name')
+    
     if not name:
         try:
+            # Try to get name from the JSON body of the request
             req_body = req.get_json()
         except ValueError:
+            # Handle exception if the body is not JSON
             pass
         else:
             name = req_body.get('name')
 
+    # Respond based on whether the name was found
     if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+        # Personalized message if name is provided
+        return func.HttpResponse(f"Hello, {name}! Welcome to the Azure Functions platform. We hope you enjoy working with serverless architecture and explore all its capabilities.")
     else:
+        # Default message when no name is provided
         return func.HttpResponse(
-             "Hi This is sanath Kumar Reddy K.
-             A YAML file is a simple and easy-to-read file format used to store information like settings or data. It is commonly used to configure applications and tools. YAML files use spaces and indentation to organize data, making them clean and human-friendly.",
-             status_code=200
+            "Hi, this is Sanath Kumar Reddy K. Welcome to the world of serverless computing. Azure Functions allow you to run small pieces of code without managing infrastructure, making it easy to scale and handle events in a cost-efficient manner.",
+            status_code=200
         )
-    
