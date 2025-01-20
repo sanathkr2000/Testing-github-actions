@@ -20,7 +20,7 @@ def sample(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
     else:
         return func.HttpResponse(
-             "This is a good great day . Pass a name in the query string or in the request body for a personalized response.",
+             "Hi This is sanath Kumar Reddy K.",
              status_code=200
         )
     
